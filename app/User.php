@@ -1,7 +1,10 @@
 <?php
 
-namespace App;
+namespace Fresh;
 
+use Fresh\Models\PhoneNumber;
+use Fresh\Models\Token;
+use Fresh\Models\Topic;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +29,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function phoneNumber()
+    {
+        return $this->hasOne(PhoneNumber::class);
+    }
+
+    public function token()
+    {
+        return $this->hasOne(Token::class);
+    }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }
